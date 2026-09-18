@@ -1,0 +1,758 @@
+/* COMPONENTS.CSS - Componentes UI reutilizables */
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--font-family-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(220, 10, 45, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-primary));
+  box-shadow: 0 6px 20px rgba(220, 10, 45, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--color-secondary), #d9a500);
+  color: var(--text-inverse);
+  box-shadow: 0 4px 14px rgba(255, 204, 1, 0.35);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FFE043, var(--color-secondary));
+  box-shadow: 0 6px 20px rgba(255, 204, 1, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: var(--border-light);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--bg-surface-elevated);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: #FFF;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #DC2626;
+  transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1.15rem;
+}
+
+/* Badges de Tipos */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: transform var(--transition-fast);
+}
+
+.type-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Clases de colores por tipo */
+.type-normal { background-color: var(--type-normal); }
+.type-fire { background-color: var(--type-fire); }
+.type-water { background-color: var(--type-water); }
+.type-grass { background-color: var(--type-grass); }
+.type-electric { background-color: var(--type-electric); color: #222 !important; text-shadow: none !important; }
+.type-ice { background-color: var(--type-ice); color: #222 !important; text-shadow: none !important; }
+.type-fighting { background-color: var(--type-fighting); }
+.type-poison { background-color: var(--type-poison); }
+.type-ground { background-color: var(--type-ground); }
+.type-flying { background-color: var(--type-flying); }
+.type-psychic { background-color: var(--type-psychic); }
+.type-bug { background-color: var(--type-bug); }
+.type-rock { background-color: var(--type-rock); }
+.type-ghost { background-color: var(--type-ghost); }
+.type-dragon { background-color: var(--type-dragon); }
+.type-dark { background-color: var(--type-dark); }
+.type-steel { background-color: var(--type-steel); }
+.type-fairy { background-color: var(--type-fairy); }
+
+/* Barras de Estadísticas */
+.stat-row {
+  display: grid;
+  grid-template-columns: 110px 45px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-family: var(--font-family-display);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.stat-bar-track {
+  height: 10px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-accent), #4F46E5);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-bar-fill.hp { background: linear-gradient(90deg, #10B981, #059669); }
+.stat-bar-fill.attack { background: linear-gradient(90deg, #F59E0B, #D97706); }
+.stat-bar-fill.defense { background: linear-gradient(90deg, #3B82F6, #2563EB); }
+.stat-bar-fill.sp-attack { background: linear-gradient(90deg, #8B5CF6, #7C3AED); }
+.stat-bar-fill.sp-defense { background: linear-gradient(90deg, #06B6D4, #0891B2); }
+.stat-bar-fill.speed { background: linear-gradient(90deg, #EC4899, #DB2777); }
+
+/* Toasts de Notificación */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 400px;
+  padding: 14px 18px;
+  background: var(--bg-surface-elevated);
+  border-left: 4px solid var(--color-info);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  animation: slideInRight 0.3s ease;
+}
+
+.toast.toast-success { border-color: var(--color-success); }
+.toast.toast-warning { border-color: var(--color-warning); }
+.toast.toast-danger { border-color: var(--color-danger); }
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Modales Base */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.92);
+  transition: transform var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-primary);
+  color: #FFF;
+}
+
+/* ============================================================
+   PARCHE SEMÁNTICO — cero <span>: normalización de elementos
+   de reemplazo (b / i / em / data / small) y migración de
+   estilos inline a clases reutilizables.
+   ============================================================ */
+
+/* Elementos de reemplazo: sin itálica por defecto donde es icono/etiqueta */
+.brand-accent,
+.title-accent,
+.menu-bar,
+.nav-badge,
+.type-badge,
+.rarity-badge,
+.trainer-rank-pill,
+.hud-pokemon-name,
+.hud-pokemon-level,
+.hud-hp-bar-fill,
+.collection-progress-fill,
+.boost-progress-fill,
+.timing-zone-yellow,
+.timing-zone-green,
+.timing-pointer,
+.damage-effects-overlay,
+.pokemon-battle-platform,
+.grass-clump,
+.search-icon,
+.ash-hero-tag,
+.safari-banner-strong,
+.stadium-intro-pill,
+.battle-hud-label,
+.team-lead-crown,
+.toast-close-btn {
+  font-style: normal;
+}
+
+/* Barras y zonas posicionadas (antes divs/span): bloque sin peso tipográfico */
+.menu-bar,
+.hud-hp-bar-fill,
+.collection-progress-fill,
+.boost-progress-fill,
+.timing-zone-yellow,
+.timing-zone-green,
+.timing-pointer,
+.pokemon-battle-platform,
+.damage-effects-overlay {
+  display: block;
+  font-weight: 400;
+}
+
+/* fieldset de filtros sin borde nativo */
+.filters-group {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* Listas semánticas que reutilizan grids existentes */
+.hero-pillar-words,
+.timing-bar-label,
+.wild-types-list,
+.gym-badges-row {
+  list-style: none;
+}
+
+/* Contadores: data/small heredan color del contexto */
+.pokedex-stats-pill data,
+.trainer-stat-val data,
+.safari-legendary-boost-val,
+.collection-count-number data {
+  font-style: normal;
+}
+
+/* Líneas de texto con clases migradas desde inline */
+.ash-hero-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 6px 0 14px;
+}
+
+.ash-hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ash-hero-figure {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.ash-hero-body {
+  min-width: 0;
+}
+
+.safari-banner-line {
+  margin: 0;
+}
+
+.safari-banner-strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.safari-banner-small {
+  color: #6EE7B7;
+  font-size: 0.88rem;
+  margin-left: 6px;
+}
+
+.wild-biome-heading {
+  text-transform: uppercase;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.wild-stage-hint {
+  color: #6EE7B7;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.wild-figure {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.wild-pokemon-name {
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  color: #FFF;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.wild-types-list {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.timing-label--yellow {
+  color: #FBBF24;
+}
+
+.timing-label--green {
+  color: #10B981;
+}
+
+.timing-feedback-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  min-height: 24px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.wild-action-controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.moves-count-badge {
+  margin-left: auto;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+
+.moves-load-more,
+.moves-search-box {
+  margin: 0;
+}
+
+.moves-load-more {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.trainer-avatar-figure {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.trainer-id-line {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin: 4px 0 0;
+}
+
+.trainer-id-strong {
+  color: var(--color-secondary);
+}
+
+.boost-progress-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
+.gym-badges-heading {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.profile-preview-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.profile-preview-title {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.profile-preview-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.collection-search-bar,
+.profile-search-bar {
+  margin-bottom: 20px;
+}
+
+.empty-notice-text {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.collection-progress-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.collection-count-text {
+  min-width: 0;
+}
+
+.collection-cta {
+  margin: 0;
+}
+
+.team-dashboard-intro {
+  min-width: 0;
+}
+
+.team-cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.battle-forfeit-btn {
+  padding: 2px 10px;
+  font-size: 0.8rem;
+}
+
+.battle-moves-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.battle-official-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin: 8px 0 0;
+}
+
+.footer-brand-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.stat-pill-item {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.grass-clump--tall {
+  transform: scale(1.15);
+}
+
+.nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+/* Modal de confirmación genérico (sustituye a confirm()) */
+.confirm-card {
+  max-width: 440px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.confirm-title {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.confirm-message {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Tarjetas de dificultad como lista semántica */
+.difficulty-cards-grid {
+  list-style: none;
+  padding: 0;
+}
+
+.difficulty-card-item {
+  margin: 0;
+}
+
+.locked-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Resultado de batalla: bloques migrados desde inline */
+.battle-result-title-win {
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+
+.battle-result-title-lose {
+  color: var(--color-danger);
+  margin-bottom: 8px;
+}
+
+.battle-result-lead {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.battle-result-summary {
+  background: var(--bg-surface-elevated);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.battle-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.capture-status-ok {
+  color: #10B981;
+  font-weight: 700;
+}
+
+.capture-status-fail {
+  color: #EF4444;
+  font-weight: 700;
+}
+
+.capture-modal-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.capture-modal-id {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.capture-modal-title {
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 4px;
+}
+
+.capture-modal-hint {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.capture-throw-full {
+  width: 100%;
+}
+
+.detail-moves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.detail-move-row {
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-move-name {
+  text-transform: capitalize;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  display: block;
+}
+
+.detail-move-effect {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.detail-move-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.detail-move-power {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.team-lead-crown {
+  font-style: normal;
+}

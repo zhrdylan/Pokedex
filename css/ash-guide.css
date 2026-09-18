@@ -1,0 +1,94 @@
+/* ASH-GUIDE.CSS - Componente de guía visual y motivador con Ash Ketchum */
+.ash-guide-widget {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  max-width: 440px;
+  background: var(--bg-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-red);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  z-index: 600;
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.ash-guide-widget.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ash-guide-avatar-wrap {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-secondary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background: var(--bg-surface-elevated);
+}
+
+.ash-guide-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ash-guide-content {
+  flex: 1;
+}
+
+.ash-guide-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-secondary);
+  background: rgba(255, 204, 1, 0.15);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  margin-bottom: 4px;
+}
+
+.ash-guide-title {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.ash-guide-message {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.ash-guide-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ash-guide-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.ash-guide-close:hover {
+  color: var(--text-primary);
+}

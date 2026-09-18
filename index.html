@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokedex | Centro de Entrenamiento Pokémon</title>
+  <meta name="description" content="Centro oficial de entrenamiento Pokémon: Pokédex Nacional con más de 1000 especies de las 9 generaciones, zona de captura Safari, carnet de entrenador y combates en el gran Estadio." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PokéTrainer Hub | Conviértete en Maestro Pokémon" />
+  <meta property="og:description" content="Explora la Pokédex, captura en la zona silvestre, entrena a tu equipo y combate en el estadio oficial junto a Ash Ketchum." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tipografías de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos Modulares -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/ash-guide.css" />
+  <link rel="stylesheet" href="css/pokedex.css" />
+  <link rel="stylesheet" href="css/wild-area.css" />
+  <link rel="stylesheet" href="css/moves.css" />
+  <link rel="stylesheet" href="css/types.css" />
+  <link rel="stylesheet" href="css/collection.css" />
+  <link rel="stylesheet" href="css/team.css" />
+  <link rel="stylesheet" href="css/capture.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="stylesheet" href="css/battle.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- GSAP Core (única dependencia externa: anima stats, transiciones y screen shake) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Efectos de brillo ambiental -->
+  <i class="ambient-glow ambient-glow--red" aria-hidden="true"></i>
+  <i class="ambient-glow ambient-glow--blue" aria-hidden="true"></i>
+
+  <!-- HEADER PRINCIPAL -->
+  <header class="app-header">
+    <section class="container header-container">
+      <a href="#" class="brand" data-nav-target="landing" aria-label="Ir al inicio PokéTrainer Hub">
+        <b class="brand-icon" aria-hidden="true"></b>
+        <b class="brand-text">POKÉ<em class="brand-accent">TRAINER</em></b>
+      </a>
+
+      <!-- Botón Hamburguesa Móvil -->
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+        <i class="menu-bar" aria-hidden="true"></i>
+        <i class="menu-bar" aria-hidden="true"></i>
+        <i class="menu-bar" aria-hidden="true"></i>
+      </button>
+
+      <!-- Navegación -->
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#landing" class="nav-link active" data-nav-target="landing">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="#pokedex" class="nav-link" data-nav-target="pokedex">Pokédex</a>
+          </li>
+          <li class="nav-item">
+            <a href="#capture" class="nav-link" data-nav-target="capture">Zona Captura</a>
+          </li>
+          <li class="nav-item">
+            <a href="#team" class="nav-link" data-nav-target="team">Mi Equipo</a>
+          </li>
+          <li class="nav-item">
+            <a href="#arena" class="nav-link" data-nav-target="arena">
+              Arena <b class="nav-badge">VS</b>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#profile" class="nav-link" data-nav-target="profile">Mi Perfil</a>
+          </li>
+          <li class="nav-item nav-more">
+            <button id="btn-nav-more" class="nav-link nav-more-toggle" aria-expanded="false" aria-controls="nav-more-menu" aria-haspopup="true">
+              Más <b class="nav-more-caret" aria-hidden="true">▾</b>
+            </button>
+            <ul id="nav-more-menu" class="nav-more-menu" aria-label="Secciones secundarias">
+              <li class="nav-item">
+                <a href="#collection" class="nav-link" data-nav-target="collection">Colección</a>
+              </li>
+              <li class="nav-item">
+                <a href="#moves" class="nav-link" data-nav-target="moves">Movimientos</a>
+              </li>
+              <li class="nav-item">
+                <a href="#types" class="nav-link" data-nav-target="types">Tipos</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item nav-tools">
+            <button id="btn-sound-toggle" class="btn btn-outline btn-sm nav-tool-btn" title="Silenciar / Activar sonido" aria-label="Control de sonido">
+              🔊 <b class="sr-only">Sonido</b>
+            </button>
+            <button id="btn-help-guide" class="btn btn-outline btn-sm btn-start-tour nav-tool-btn" title="Repetir tour con Ash">Tour Ash</button>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL DE VISTAS (SPA) -->
+  <main class="app-main">
+
+    <!-- 1. INTRO / LANDING HERO CON ASH PROTAGONISTA -->
+    <section id="view-landing" class="app-section active" aria-labelledby="landing-title">
+      <section class="hero-clean-landing">
+        <section class="hero-content">
+          <p class="hero-badge">⚡ CENTRO DE ENTRENAMIENTO POKÉMON • LIGA OFICIAL</p>
+          <h1 id="landing-title" class="hero-title">Bienvenido, <em class="title-accent">Entrenador</em></h1>
+
+          <ul class="hero-pillar-words" aria-label="Pilares de la aventura">
+            <li class="pillar-tag">DESCUBRE</li>
+            <li class="pillar-tag">CAPTURA</li>
+            <li class="pillar-tag">ENTRENA</li>
+            <li class="pillar-tag">COMBATE</li>
+          </ul>
+
+          <!-- Cuadro de Diálogo Protagónico con Ash -->
+          <article class="ash-hero-card" aria-label="Presentación de Ash Ketchum">
+            <figure class="ash-hero-figure">
+              <img src="assets/img/Ash_Ketchum/Ash_Ketchum-Saludando.png" alt="Ash Ketchum saludando" class="ash-hero-avatar" />
+            </figure>
+            <section class="ash-hero-body">
+              <b class="ash-hero-tag">¡Tu Compañero de Aventura!</b>
+              <p class="ash-hero-text">
+                ¡Hola! Soy <strong>Ash Ketchum</strong> de Pueblo Paleta. ¡Bienvenido a nuestro Centro de Entrenamiento! Te acompañaré a explorar la Pokédex, capturar Pokémon en el Safari, armar tu equipo y combatir en el gran Estadio. ¿Listo para comenzar tu aventura Pokémon?
+              </p>
+              <p class="ash-hero-actions">
+                <button type="button" class="btn btn-secondary btn-sm btn-start-tour">✨ Iniciar Tour con Ash</button>
+                <button type="button" class="btn btn-outline btn-sm" data-nav-target="pokedex">Explorar Pokédex</button>
+                <button type="button" class="btn btn-outline btn-sm" data-nav-target="capture">Ir al Safari</button>
+                <button type="button" class="btn btn-outline btn-sm" data-nav-target="profile">Mi Perfil</button>
+              </p>
+            </section>
+          </article>
+
+          <p class="hero-cta-group">
+            <button type="button" id="btn-start-adventure" class="btn btn-primary btn-lg" data-nav-target="pokedex">Explorar Pokédex</button>
+            <button type="button" class="btn btn-outline btn-lg" data-nav-target="arena">Desafiar la Arena</button>
+          </p>
+        </section>
+      </section>
+    </section>
+
+    <!-- 2. POKÉDEX INTERACTIVA (+1000 POKÉMON Y 9 GENERACIONES) -->
+    <section id="view-pokedex" class="app-section container" aria-labelledby="pokedex-title">
+      <header class="section-header">
+        <h2 id="pokedex-title" class="section-title">Pokédex <em class="title-accent">Nacional Oficial</em></h2>
+        <p class="section-subtitle">Explora los más de 1000 Pokémon desde Kanto (#001) hasta Paldea (#1025). Filtra por generación o tipo, busca cualquier especie y consulta sus estadísticas en tiempo real.</p>
+      </header>
+
+      <!-- Barra de herramientas: Búsqueda, Generaciones, Tipos, Orden y Contadores -->
+      <form class="pokedex-controls" id="pokedex-controls-form" role="search" aria-label="Controles de la Pokédex">
+        <p class="search-box">
+          <label class="sr-only" for="pokedex-search-input">Buscar Pokémon</label>
+          <i class="search-icon" aria-hidden="true">🔍</i>
+          <input type="search" id="pokedex-search-input" class="search-input" placeholder="Buscar por nombre o número en los +1000 (ej: Lucario, 1000, Pecharunt)..." autocomplete="off" />
+        </p>
+
+        <fieldset class="filters-group">
+          <legend class="sr-only">Filtros de la Pokédex</legend>
+          <label class="sr-only" for="pokedex-gen-filter">Filtrar por generación Pokémon</label>
+          <select id="pokedex-gen-filter" class="filter-select"></select>
+
+          <label class="sr-only" for="pokedex-type-filter">Filtrar por tipo elemental</label>
+          <select id="pokedex-type-filter" class="filter-select">
+            <option value="all">Todos los Tipos</option>
+          </select>
+
+          <label class="sr-only" for="pokedex-sort-select">Ordenar Pokémon</label>
+          <select id="pokedex-sort-select" class="filter-select">
+            <option value="id-asc">Número (Menor a Mayor)</option>
+            <option value="id-desc">Número (Mayor a Menor)</option>
+            <option value="name-asc">Nombre (A - Z)</option>
+            <option value="name-desc">Nombre (Z - A)</option>
+          </select>
+        </fieldset>
+
+        <dl class="pokedex-stats-pill" aria-label="Progreso de descubrimiento">
+          <dt class="sr-only">Descubiertos</dt>
+          <dd class="stat-pill-item">Descubiertos: <strong><data id="count-discovered" value="0">0 / 1025</data></strong></dd>
+          <dt class="sr-only">Capturados</dt>
+          <dd class="stat-pill-item">Capturados: <strong><data id="count-captured" value="0">0 / 1025</data></strong></dd>
+        </dl>
+      </form>
+
+      <!-- Cuadrícula de Pokémon -->
+      <section id="pokedex-grid" class="pokemon-grid" aria-live="polite" aria-label="Resultados de la Pokédex"></section>
+
+      <!-- Botón de carga progresiva -->
+      <p class="pokedex-load-more">
+        <button id="btn-load-more-pokedex" class="btn btn-outline btn-lg">Cargar Más Pokémon</button>
+      </p>
+    </section>
+
+    <!-- 3. ZONA SILVESTRE DE CAPTURA -->
+    <section id="view-capture" class="app-section container" aria-labelledby="capture-title">
+      <header class="section-header">
+        <h2 id="capture-title" class="section-title">Zona Silvestre <em class="title-accent">de Captura</em></h2>
+        <p class="section-subtitle">Explora diferentes biomas de Kanto. Entre más raro sea el Pokémon, más estrecha será la zona verde de puntería para capturarlo.</p>
+      </header>
+
+      <section class="wild-area-container" aria-label="Área silvestre de captura">
+        <!-- Banner de Probabilidad Legendaria Activa -->
+        <aside class="safari-legendary-banner" aria-label="Bonus de aparición legendaria">
+          <p class="safari-banner-line">
+            <strong class="safari-banner-strong">✨ Aura de Entrenador: </strong>
+            <data class="safari-legendary-boost-val" id="safari-legendary-rate" value="0">+0%</data>
+            <small class="safari-banner-small">de aparición Legendaria</small>
+          </p>
+          <p class="safari-hint-text">
+            ¡Entre más Pokémon captures en tu Perfil, mayor probabilidad de atraer especies Míticas y Legendarias!
+          </p>
+        </aside>
+
+        <h3 class="wild-biome-heading">1. Selecciona un Bioma de Exploración</h3>
+
+        <!-- Selector de Biomas -->
+        <ul id="biomes-selector-grid" class="biomes-grid" aria-label="Biomas de exploración"></ul>
+
+        <!-- Escenario de Hierba Alta y Encuentro -->
+        <section class="tall-grass-stage" id="wild-encounter-stage" aria-label="Escenario de encuentro salvaje">
+
+          <p id="wild-stage-hint" class="wild-stage-hint" aria-live="polite">
+            ¡Explora la hierba para detectar Pokémon salvajes en este bioma!
+          </p>
+
+          <p id="wild-grass-container" class="grass-clump-container" aria-hidden="true">
+            <i class="grass-clump">🌿</i>
+            <i class="grass-clump grass-clump--tall">🌾</i>
+            <i class="grass-clump">🌿</i>
+          </p>
+
+          <article id="wild-encounter-card" class="wild-encounter-card" aria-label="Pokémon salvaje encontrado">
+            <b id="wild-rarity-badge" class="rarity-badge rarity-common">COMÚN</b>
+            <figure class="wild-figure">
+              <img id="wild-pokemon-art" class="wild-pokemon-art" src="assets/img/Ash_Ketchum/Ash_Ketchum-Saludando.png" alt="Pokémon salvaje" />
+            </figure>
+            <h3 id="wild-pokemon-name" class="wild-pokemon-name"></h3>
+            <ul id="wild-types-wrap" class="wild-types-list" aria-label="Tipos del Pokémon salvaje"></ul>
+          </article>
+
+          <!-- Minijuego de Puntería / Timing -->
+          <section id="timing-minigame-panel" class="timing-minigame-panel" aria-label="Minijuego de puntería">
+            <ul class="timing-bar-label" aria-label="Leyenda de zonas">
+              <li class="timing-label timing-label--red">Rojo: Fallo</li>
+              <li class="timing-label timing-label--yellow">Amarillo: Bueno</li>
+              <li class="timing-label timing-label--green">Verde: ¡Perfecto!</li>
+            </ul>
+
+            <section class="timing-track-outer" aria-hidden="true">
+              <b id="timing-zone-yellow" class="timing-zone-yellow"></b>
+              <b id="timing-zone-green" class="timing-zone-green"></b>
+              <b id="timing-pointer" class="timing-pointer"></b>
+            </section>
+
+            <section class="pokeball-selector-bar" aria-label="Selector de Poké Ball">
+              <button class="pokeball-choice-btn selected" data-ball="pokeball" aria-pressed="true">
+                🔴 Poké Ball <small>(x1.0)</small>
+              </button>
+              <button class="pokeball-choice-btn" data-ball="greatball" aria-pressed="false">
+                🔵 Super Ball <small>(x1.35)</small>
+              </button>
+              <button class="pokeball-choice-btn" data-ball="ultraball" aria-pressed="false">
+                🟡 Ultra Ball <small>(x1.70)</small>
+              </button>
+            </section>
+
+            <p class="safari-throw-meta">
+              <button id="btn-use-berry" class="btn btn-outline btn-sm berry-btn">🍇 Usar Baya <small>(1× por encuentro)</small></button>
+              <b id="wild-attempts-count" class="attempts-count">Intento 1/3</b>
+            </p>
+            <p class="combo-line" id="wild-combo-line" hidden>🔥 <b id="wild-combo-count" class="combo-count">Racha ×2</b></p>
+
+            <p id="timing-feedback-text" class="timing-feedback-text" aria-live="polite">
+              ¡Presiona cuando el puntero esté en el centro verde!
+            </p>
+            <p class="timing-keyboard-hint">
+              Pulsa <kbd>Espacio</kbd> o el botón para lanzar la Poké Ball
+            </p>
+          </section>
+
+          <p id="wild-action-controls" class="wild-action-controls">
+            <button id="btn-explore-grass" class="btn btn-primary btn-lg">Explorar Hierba Alta</button>
+          </p>
+
+        </section>
+      </section>
+    </section>
+
+    <!-- 4. BIBLIOTECA DE MOVIMIENTOS (842 MOVIMIENTOS) -->
+    <section id="view-moves" class="app-section container" aria-labelledby="moves-title">
+      <header class="section-header">
+        <h2 id="moves-title" class="section-title">Biblioteca de <em class="title-accent">Movimientos</em></h2>
+        <p class="section-subtitle">Base de datos oficial de 842 movimientos: potencia, precisión, PP, categoría y efectos en combate.</p>
+      </header>
+
+      <section class="moves-explorer-container" aria-label="Explorador de movimientos">
+        <form class="moves-controls-bar" id="moves-controls-form" role="search" aria-label="Filtros de movimientos">
+          <p class="search-box moves-search-box">
+            <label class="sr-only" for="moves-search-input">Buscar movimiento</label>
+            <i class="search-icon" aria-hidden="true">🔍</i>
+            <input type="search" id="moves-search-input" class="search-input" placeholder="Buscar movimiento o efecto (ej: Lanzallamas, Terremoto)..." autocomplete="off" />
+          </p>
+
+          <fieldset class="filters-group">
+            <legend class="sr-only">Filtros de movimientos</legend>
+            <label class="sr-only" for="moves-type-filter">Filtrar movimientos por tipo</label>
+            <select id="moves-type-filter" class="filter-select">
+              <option value="all">Todos los Tipos</option>
+            </select>
+
+            <label class="sr-only" for="moves-cat-filter">Filtrar movimientos por categoría</label>
+            <select id="moves-cat-filter" class="filter-select">
+              <option value="all">Todas las Categorías</option>
+              <option value="physical">⚔️ Físico</option>
+              <option value="special">🔮 Especial</option>
+              <option value="status">🛡️ Estado</option>
+            </select>
+
+            <label class="sr-only" for="moves-sort-select">Ordenar movimientos</label>
+            <select id="moves-sort-select" class="filter-select">
+              <option value="name-asc">Nombre (A - Z)</option>
+              <option value="name-desc">Nombre (Z - A)</option>
+              <option value="power-desc">Potencia (Mayor a Menor)</option>
+              <option value="power-asc">Potencia (Menor a Mayor)</option>
+              <option value="acc-desc">Precisión (Mayor a Menor)</option>
+            </select>
+          </fieldset>
+
+          <p id="moves-count-badge" class="moves-count-badge">
+            842 Movimientos
+          </p>
+        </form>
+
+        <section id="moves-grid-list" class="moves-grid-list" aria-live="polite" aria-label="Lista de movimientos"></section>
+
+        <p class="moves-load-more">
+          <button id="btn-load-more-moves" class="btn btn-outline btn-lg">Cargar Más Movimientos</button>
+        </p>
+      </section>
+    </section>
+
+    <!-- MI PERFIL: CARNET DE ENTRENADOR, ESTADÍSTICAS Y VISTA PREVIA DE COLECCIÓN -->
+    <section id="view-profile" class="app-section container" aria-labelledby="profile-title">
+      <header class="section-header">
+        <h2 id="profile-title" class="section-title">Perfil de <em class="title-accent">Entrenador</em></h2>
+        <p class="section-subtitle">Carnet oficial de la Liga Pokémon, registro de capturas, medallas de gimnasio y multiplicador de encuentros legendarios.</p>
+      </header>
+
+      <!-- Carnet de Entrenador (Trainer Card) -->
+      <article class="trainer-card-wrapper" aria-label="Carnet de entrenador">
+        <header class="trainer-card-header">
+          <figure class="trainer-avatar-figure">
+            <img src="assets/img/Ash_Ketchum/Ash_Ketchum.jpeg" alt="Avatar del Entrenador" class="trainer-avatar-img" />
+          </figure>
+          <section class="trainer-info-block">
+            <b id="profile-trainer-rank" class="trainer-rank-pill">Novato de Pueblo Paleta</b>
+            <h3 class="trainer-name">Ash Ketchum</h3>
+            <p class="trainer-id-line">ID de Entrenador: <strong class="trainer-id-strong">#09524</strong> • Región: <strong>Kanto</strong></p>
+          </section>
+        </header>
+
+        <!-- Estadísticas del Entrenador -->
+        <dl class="trainer-stats-grid">
+          <section class="trainer-stat-card">
+            <dt class="trainer-stat-label">Pokémon Capturados</dt>
+            <dd class="trainer-stat-val"><data id="profile-stat-captured" value="0">0 / 1025</data></dd>
+          </section>
+          <section class="trainer-stat-card">
+            <dt class="trainer-stat-label">Pokémon Descubiertos</dt>
+            <dd class="trainer-stat-val"><data id="profile-stat-discovered" value="0">0 / 1025</data></dd>
+          </section>
+          <section class="trainer-stat-card">
+            <dt class="trainer-stat-label">Victorias en Arena</dt>
+            <dd class="trainer-stat-val"><data id="profile-stat-victories" value="0">0</data></dd>
+          </section>
+          <section class="trainer-stat-card">
+            <dt class="trainer-stat-label">Nivel Desbloqueado</dt>
+            <dd class="trainer-stat-val"><data id="profile-stat-difficulty" value="beginner">Principiante</data></dd>
+          </section>
+          <section class="trainer-stat-card highlight">
+            <dt class="trainer-stat-label">Bonus Encuentro Legendario</dt>
+            <dd class="trainer-stat-val legendary-boost-tag"><data id="profile-legendary-boost" value="0">+0%</data></dd>
+            <dd class="boost-progress-wrap">
+              <p class="boost-progress-track" role="progressbar" aria-label="Progreso del bonus legendario" aria-valuemin="0" aria-valuemax="75" aria-valuenow="0" id="profile-boost-progressbar">
+                <b id="profile-boost-progress-fill" class="boost-progress-fill"></b>
+              </p>
+              <small class="boost-progress-hint">Aumenta +3% por cada Pokémon capturado</small>
+            </dd>
+          </section>
+        </dl>
+
+        <!-- Medallas de Gimnasio -->
+        <section class="gym-badges-section" aria-label="Medallas de gimnasio">
+          <h4 class="gym-badges-heading">Medallas de Gimnasio Oficiales:</h4>
+          <ul id="profile-gym-badges" class="gym-badges-row"></ul>
+        </section>
+      </article>
+
+      <!-- Vista previa de colección (galería fusionada: la gestión completa vive en Mi Colección) -->
+      <section class="profile-captured-section" aria-labelledby="profile-preview-heading">
+        <header class="profile-preview-header">
+          <h3 id="profile-preview-heading" class="profile-preview-title">Vista previa de tu colección</h3>
+          <p class="profile-preview-actions">
+            <button class="btn btn-secondary btn-sm" data-nav-target="collection">Ver colección completa</button>
+            <button class="btn btn-outline btn-sm" data-nav-target="capture">+ Capturar Más en Safari</button>
+          </p>
+        </header>
+
+        <form class="profile-search-bar" id="profile-search-form" role="search" aria-label="Buscar en vista previa">
+          <p class="search-box">
+            <label class="sr-only" for="profile-search-input">Buscar Pokémon capturados</label>
+            <i class="search-icon" aria-hidden="true">🔍</i>
+            <input type="search" id="profile-search-input" class="search-input" placeholder="Buscar en tus Pokémon capturados..." autocomplete="off" />
+          </p>
+        </form>
+
+        <section id="profile-captured-grid" class="collection-grid" aria-live="polite" aria-label="Vista previa de capturados"></section>
+
+        <section id="profile-empty-notice" class="profile-empty-notice" aria-label="Sin capturas">
+          <p class="empty-notice-text">Aún no has capturado ningún Pokémon.</p>
+          <button class="btn btn-primary btn-lg" data-nav-target="capture">¡Explorar Zona Silvestre de Captura!</button>
+        </section>
+      </section>
+    </section>
+
+    <!-- 5. CONSULTA DE TIPOS -->
+    <section id="view-types" class="app-section container" aria-labelledby="types-title">
+      <header class="section-header">
+        <h2 id="types-title" class="section-title">Afinidades y <em class="title-accent">Tipos</em></h2>
+        <p class="section-subtitle">Conoce las ventajas estratégicas de cada uno de los 18 tipos elementales para dominar en combate.</p>
+      </header>
+
+      <ul id="types-selector-grid" class="types-selector-grid" aria-label="Lista de tipos Pokémon"></ul>
+      <section id="type-detail-panel" class="type-detail-panel" aria-live="polite" aria-label="Detalle del tipo seleccionado"></section>
+    </section>
+
+    <!-- 6. MI COLECCIÓN (galería canónica fusionada) -->
+    <section id="view-collection" class="app-section container" aria-labelledby="collection-title">
+      <header class="section-header">
+        <h2 id="collection-title" class="section-title">Mi <em class="title-accent">Colección</em></h2>
+        <p class="section-subtitle">Todos los Pokémon que has capturado en tus aventuras. Asígnalos a tu equipo para combatir.</p>
+      </header>
+
+      <section class="collection-stats-bar" aria-label="Progreso de colección">
+        <section class="collection-count-box">
+          <b class="collection-trophy-icon" aria-hidden="true">🏆</b>
+          <section class="collection-count-text">
+            <p id="collection-count-number" class="collection-count-number"><data id="collection-count-data" value="0">0</data> <small>/ 1025</small></p>
+            <p class="collection-progress-label">Progreso Nacional</p>
+          </section>
+        </section>
+
+        <p class="collection-progress-bar-wrap">
+          <b class="collection-progress-track" role="progressbar" aria-label="Progreso nacional de colección" aria-valuemin="0" aria-valuemax="1025" aria-valuenow="0" id="collection-progressbar">
+            <i id="collection-progress-fill" class="collection-progress-fill"></i>
+          </b>
+        </p>
+
+        <p class="collection-cta">
+          <button class="btn btn-primary btn-sm" data-nav-target="capture">+ Explorar Zona Silvestre</button>
+        </p>
+      </section>
+
+      <form class="collection-search-bar" id="collection-search-form" role="search" aria-label="Buscar en la colección">
+        <p class="search-box">
+          <label class="sr-only" for="collection-search-input">Buscar en tu colección</label>
+          <i class="search-icon" aria-hidden="true">🔍</i>
+          <input type="search" id="collection-search-input" class="search-input" placeholder="Buscar en tu colección por nombre o número..." autocomplete="off" />
+        </p>
+      </form>
+
+      <section id="collection-grid" class="collection-grid" aria-live="polite" aria-label="Pokémon capturados"></section>
+    </section>
+
+    <!-- 7. MI EQUIPO -->
+    <section id="view-team" class="app-section container" aria-labelledby="team-title">
+      <header class="team-dashboard-header">
+        <section class="team-dashboard-intro">
+          <h2 id="team-title" class="section-title">Mi <em class="title-accent">Equipo</em> de Combate</h2>
+          <p class="section-subtitle">Configura tu formación de hasta 6 Pokémon. El líder abre el combate y, si cae, relevarás con otro miembro.</p>
+        </section>
+        <p id="team-counter-badge" class="team-counter-badge" aria-live="polite">EQUIPO 0 / 6</p>
+      </header>
+
+      <ol id="team-slots-grid" class="team-slots-grid" aria-label="Ranuras del equipo"></ol>
+
+      <p class="team-cta">
+        <button class="btn btn-primary btn-lg" data-nav-target="arena">¡Llevar Equipo a la Arena!</button>
+      </p>
+    </section>
+
+    <!-- 8. ARENA DE BATALLA -->
+    <section id="view-arena" class="app-section container" aria-labelledby="arena-title">
+
+      <!-- Vista 1: Lobby de Selección de Dificultad -->
+      <section id="arena-lobby-view" aria-label="Selección de dificultad">
+        <section class="arena-lobby">
+          <header class="section-header">
+            <h2 id="arena-title" class="section-title">Estadio <em class="title-accent">Pokémon</em></h2>
+            <p class="section-subtitle">Elige tu nivel de desafío y enfréntate a entrenadores cada vez más expertos hasta llegar al Jefe Final.</p>
+          </header>
+
+          <ul id="difficulty-cards-container" class="difficulty-cards-grid" aria-label="Niveles de dificultad"></ul>
+        </section>
+      </section>
+
+      <!-- Overlay de Video Cinemático de Entrada al Estadio -->
+      <section id="stadium-intro-overlay" class="stadium-intro-overlay" aria-label="Entrada cinematográfica al estadio">
+        <video id="stadium-intro-video" class="stadium-intro-video">
+          <source src="assets/vid/Entrada.mp4" type="video/mp4" />
+        </video>
+        <footer class="stadium-intro-bar">
+          <b class="stadium-intro-pill">⚡ ENTRADA AL GRAN ESTADIO</b>
+          <button id="btn-skip-intro-video" class="btn btn-secondary btn-sm stadium-skip-btn">Omitir Entrada ⏩</button>
+        </footer>
+      </section>
+
+      <!-- Vista 2: Campo de Batalla Activo -->
+      <section id="battle-arena-stage" aria-label="Campo de batalla activo">
+        <section class="battle-arena-wrapper">
+
+          <header class="battle-hud-top">
+            <b class="battle-hud-label">ARENA DE COMBATE OFICIAL</b>
+            <button id="btn-forfeit-battle" class="btn btn-outline btn-sm battle-forfeit-btn">Abandonar</button>
+          </header>
+
+          <section class="battle-stage-field" aria-label="Combatientes">
+            <!-- Zona CPU -->
+            <section class="combatant-zone cpu-side" aria-label="Pokémon rival">
+              <section class="pokemon-hud-card" aria-label="Estado del rival">
+                <p class="hud-name-level">
+                  <b id="battle-cpu-name" class="hud-pokemon-name">Enemigo</b>
+                  <data id="battle-cpu-level" class="hud-pokemon-level" value="50">Nv. 50</data>
+                </p>
+                <p class="hud-hp-bar-track" role="progressbar" aria-label="Salud del rival" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="battle-cpu-hp-bar">
+                  <b id="battle-cpu-hp-fill" class="hud-hp-bar-fill"></b>
+                </p>
+                <p id="battle-cpu-hp-num" class="hud-hp-numbers">100 / 100 HP</p>
+              </section>
+
+              <figure class="pokemon-battle-sprite-wrap">
+                <i class="pokemon-battle-platform" aria-hidden="true"></i>
+                <img id="battle-cpu-sprite" class="pokemon-battle-sprite" src="assets/img/Ash_Ketchum/Ash_Ketchum-Saludando.png" alt="Pokémon rival" />
+                <b id="battle-cpu-damage-overlay" class="damage-effects-overlay" aria-hidden="true"></b>
+              </figure>
+            </section>
+
+            <!-- Zona Jugador -->
+            <section class="combatant-zone player-side" aria-label="Tu Pokémon">
+              <figure class="pokemon-battle-sprite-wrap">
+                <i class="pokemon-battle-platform" aria-hidden="true"></i>
+                <img id="battle-player-sprite" class="pokemon-battle-sprite" src="assets/img/Ash_Ketchum/Ash_Ketchum-Saludando.png" alt="Tu Pokémon" />
+                <b id="battle-player-damage-overlay" class="damage-effects-overlay" aria-hidden="true"></b>
+              </figure>
+
+              <section class="pokemon-hud-card" aria-label="Estado de tu Pokémon">
+                <p class="hud-name-level">
+                  <b id="battle-player-name" class="hud-pokemon-name">Mi Pokémon</b>
+                  <data id="battle-player-level" class="hud-pokemon-level" value="50">Nv. 50</data>
+                </p>
+                <p class="hud-hp-bar-track" role="progressbar" aria-label="Salud de tu Pokémon" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="battle-player-hp-bar">
+                  <b id="battle-player-hp-fill" class="hud-hp-bar-fill"></b>
+                </p>
+                <p id="battle-player-hp-num" class="hud-hp-numbers">100 / 100 HP</p>
+              </section>
+            </section>
+          </section>
+
+          <section class="battle-controls-panel" aria-label="Controles de batalla">
+            <section class="battle-moves-section">
+              <section class="battle-moves-header">
+                <h3 class="battle-moves-heading">Selecciona tu movimiento:</h3>
+                <button id="btn-switch-pokemon" class="btn btn-outline btn-sm">🔄 Cambiar Pokémon</button>
+              </section>
+              <section class="battle-party-row" aria-live="polite">
+                <b class="battle-party-label">Escuadra:</b>
+                <ul id="battle-party-dots" class="party-dots" aria-label="Estado de tu escuadra"></ul>
+                <data id="battle-party-count" class="battle-party-count" value="1">1/1 en pie</data>
+              </section>
+              <ul id="battle-moves-grid" class="moves-grid" aria-label="Movimientos disponibles"></ul>
+            </section>
+
+            <section class="battle-narrative-box" aria-label="Narración del combate">
+              <p id="battle-narrative-log" class="narrative-log" aria-live="polite" aria-atomic="true">
+                Esperando orden del entrenador...
+              </p>
+              <p class="battle-official-note">Batalla Oficial por Turnos</p>
+            </section>
+          </section>
+
+          <!-- Panel de relevo de la escuadra -->
+          <section id="battle-switch-panel" class="switch-panel" hidden aria-labelledby="battle-switch-title">
+            <section class="switch-card" role="dialog" aria-modal="false" aria-labelledby="battle-switch-title">
+              <h3 id="battle-switch-title" class="switch-title">Elige a tu siguiente Pokémon</h3>
+              <p id="battle-switch-hint" class="switch-hint"></p>
+              <ul id="battle-switch-list" class="switch-list"></ul>
+            </section>
+          </section>
+
+        </section>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER SEMÁNTICO -->
+  <footer class="app-footer">
+    <section class="container footer-content">
+      <p class="footer-brand">
+        <b class="brand-icon footer-brand-icon" aria-hidden="true"></b>
+        <strong>PokéTrainer Hub</strong> © 2026 — Centro Oficial de Entrenamiento Pokémon.
+      </p>
+      <nav class="footer-links" aria-label="Enlaces secundarios">
+        <button id="btn-reset-data" class="footer-link">Reiniciar Datos</button>
+      </nav>
+    </section>
+  </footer>
+
+  <!-- MODAL: DETALLE DEL POKÉMON -->
+  <section id="pokemon-detail-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-detail-title">
+    <section class="modal-card">
+      <h2 id="modal-detail-title" class="sr-only">Detalle del Pokémon</h2>
+      <button class="modal-close-btn" data-close-modal aria-label="Cerrar modal">&times;</button>
+      <section id="pokemon-detail-content"></section>
+    </section>
+  </section>
+
+  <!-- MODAL: MINIJUEGO DE CAPTURA POKÉDEX -->
+  <section id="capture-modal" class="modal-overlay capture-modal" role="dialog" aria-modal="true" aria-labelledby="modal-capture-title">
+    <section class="modal-card">
+      <h2 id="modal-capture-title" class="sr-only">Captura de Pokémon</h2>
+      <button class="modal-close-btn" data-close-modal aria-label="Cerrar modal">&times;</button>
+      <section id="capture-modal-content"></section>
+    </section>
+  </section>
+
+  <!-- MODAL: RESULTADO DE BATALLA -->
+  <section id="battle-result-modal" class="modal-overlay battle-result-modal" role="dialog" aria-modal="true" aria-labelledby="modal-battle-title">
+    <section class="modal-card">
+      <h2 id="modal-battle-title" class="sr-only">Resultado de la batalla</h2>
+      <section id="battle-result-content"></section>
+    </section>
+  </section>
+
+  <!-- MODAL: CONFIRMACIÓN GENÉRICA (sustituye a confirm()) -->
+  <section id="confirm-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+    <section class="modal-card confirm-card">
+      <h2 id="confirm-modal-title" class="confirm-title">¿Confirmar acción?</h2>
+      <p id="confirm-modal-message" class="confirm-message"></p>
+      <p class="confirm-actions">
+        <button id="btn-confirm-cancel" class="btn btn-outline">Cancelar</button>
+        <button id="btn-confirm-accept" class="btn btn-danger">Confirmar</button>
+      </p>
+    </section>
+  </section>
+
+  <!-- SCRIPT PRINCIPAL MODULAR -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

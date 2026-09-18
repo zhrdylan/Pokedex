@@ -1,0 +1,465 @@
+/* WILD-AREA.CSS - Estilos para la Zona Silvestre de Captura y Minijuego de Precisión */
+
+/* Contenedor Principal de la Zona Silvestre */
+.wild-area-container {
+  background: var(--bg-surface);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Selector de Biomas */
+.biomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0 30px;
+  padding: 0;
+}
+
+.biome-item {
+  margin: 0;
+}
+
+.biome-card {
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.biome-card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.biome-card.active {
+  border-color: var(--color-secondary);
+  background: rgba(255, 204, 1, 0.08);
+  box-shadow: 0 0 15px rgba(255, 204, 1, 0.25);
+}
+
+.biome-icon {
+  font-size: 2.2rem;
+  font-style: normal;
+}
+
+.biome-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.biome-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Escenario de Hierba Alta */
+.tall-grass-stage {
+  background: linear-gradient(180deg, #102A18 0%, #08150C 100%);
+  border: 2px solid #2D6A4F;
+  border-radius: var(--radius-lg);
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animación de la hierba moviéndose */
+.grass-clump-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 3.5rem;
+  margin: 20px 0;
+  user-select: none;
+}
+
+.grass-clump {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.grass-clump.rustling {
+  animation: rustleGrass 0.5s ease infinite alternate;
+}
+
+@keyframes rustleGrass {
+  0% { transform: rotate(-8deg) scale(1.05); }
+  100% { transform: rotate(8deg) scale(0.98); }
+}
+
+/* Tarjeta del Pokémon Salvaje Aparecido */
+.wild-encounter-card {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: encounterPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes encounterPop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.wild-pokemon-art {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
+  margin: 10px 0;
+  transition: transform 0.3s ease;
+}
+
+/* Badges de Rareza */
+.rarity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.rarity-common {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border: 1px solid #10B981;
+}
+
+.rarity-uncommon {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60A5FA;
+  border: 1px solid #3B82F6;
+}
+
+.rarity-rare {
+  background: rgba(168, 85, 247, 0.2);
+  color: #C084FC;
+  border: 1px solid #A855F7;
+}
+
+.rarity-legendary {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FCD34D;
+  border: 1px solid #F59E0B;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+  animation: legendaryGlow 2s ease infinite alternate;
+}
+
+@keyframes legendaryGlow {
+  0% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+  100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.8); }
+}
+
+/* ================================================= */
+/* MINIJUEGO DE TIMING / PRECISIÓN                  */
+/* ================================================= */
+.timing-minigame-panel {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(11, 14, 20, 0.9);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-top: 18px;
+}
+
+.timing-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Barra de oscilación con zonas */
+.timing-track-outer {
+  width: 100%;
+  height: 28px;
+  background: #EF4444; /* Zona roja por defecto */
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #111;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Zona amarilla (buena) */
+.timing-zone-yellow {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #FBBF24;
+  left: 30%;
+  width: 40%;
+}
+
+/* Zona verde (perfecta) centrada */
+.timing-zone-green {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #10B981;
+  left: 42%;
+  width: 16%;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+}
+
+/* Puntero que oscila de izquierda a derecha */
+.timing-pointer {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 6px;
+  background: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #FFF, 0 0 15px rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%);
+  left: 5%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Selector de Poké Balls */
+.pokeball-selector-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 12px;
+}
+
+.pokeball-choice-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pokeball-choice-btn:hover {
+  border-color: var(--color-secondary);
+}
+
+.pokeball-choice-btn.selected {
+  border-color: var(--color-secondary);
+  background: rgba(255, 204, 1, 0.15);
+  box-shadow: 0 0 10px rgba(255, 204, 1, 0.3);
+}
+
+/* Botón flotante asistente de Ash (encuadre de cara + anillo + pulso) */
+.ash-floating-assistant {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 3px solid var(--color-secondary);
+  outline: 2px solid rgba(255, 204, 1, 0.35);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow-gold);
+  background: var(--bg-surface);
+  cursor: pointer;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: ashFloatPulse 3s ease-in-out infinite;
+}
+
+.ash-floating-assistant:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(255, 204, 1, 0.7);
+  animation-play-state: paused;
+}
+
+.ash-floating-assistant:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.ash-floating-assistant img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.15);
+}
+
+@keyframes ashFloatPulse {
+  0%, 100% { box-shadow: var(--shadow-lg), 0 0 12px rgba(255, 204, 1, 0.35); }
+  50% { box-shadow: var(--shadow-lg), 0 0 24px rgba(255, 204, 1, 0.65); }
+}
+
+/* Highlight / Spotlight durante el Tour de Ash */
+.tour-highlight-focus {
+  position: relative;
+  z-index: 550 !important;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.75), 0 0 35px var(--color-secondary) !important;
+  border-radius: var(--radius-md);
+  transition: box-shadow 0.4s ease;
+}
+
+/* Banner de Probabilidad Legendaria en Safari */
+.safari-legendary-banner {
+  background: linear-gradient(90deg, rgba(20, 26, 35, 0.95), rgba(16, 185, 129, 0.2));
+  border: 1px solid #10B981;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
+}
+
+.safari-legendary-boost-val {
+  font-family: var(--font-family-display);
+  font-size: 1.25rem;
+  color: #34D399;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.wild-type-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+
+.safari-hint-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Fila baya + intentos + racha */
+.safari-throw-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0 0;
+}
+
+.wild-action-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.berry-btn small {
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+.berry-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+.attempts-count {
+  font-family: var(--font-family-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.attempts-count[data-alerted="true"] {
+  color: var(--color-warning);
+}
+
+.combo-line {
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-top: 6px;
+}
+
+.combo-count {
+  font-style: normal;
+}
+
+/* Vuelo de la ball hacia el sprite */
+.capture-pokeball-graphic.ball-flying {
+  transform: translateY(-70px) scale(0.75);
+  transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* Balanceo de esquiva del sprite salvaje */
+.wild-pokemon-art.wild-dodge-rare {
+  animation: wildDodge 1.6s ease-in-out infinite;
+}
+
+.wild-pokemon-art.wild-dodge-legendary {
+  animation: wildDodge 0.9s ease-in-out infinite;
+}
+
+@keyframes wildDodge {
+  0%, 100% { transform: translateX(-14px); }
+  50% { transform: translateX(14px); }
+}
+
+/* Hint de teclado + tecla kbd */
+.timing-keyboard-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+}
+
+kbd,
+.throw-kbd {
+  font-family: var(--font-family-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-style: normal;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom-width: 2px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}

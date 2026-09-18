@@ -1,0 +1,136 @@
+/* TEAM.CSS - Interfaz de Equipo Pokémon (Máximo 6 slots) */
+.team-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.team-counter-badge {
+  font-family: var(--font-family-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 204, 1, 0.4);
+  border-radius: var(--radius-full);
+  color: var(--color-secondary);
+}
+
+.team-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Slot de Pokémon en el equipo */
+.team-slot-card {
+  background: var(--bg-card);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.team-slot-card.is-active-lead {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 16px rgba(255, 204, 1, 0.25);
+}
+
+.team-lead-crown {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-secondary);
+  color: #111;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.team-slot-img-wrap {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.team-slot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.team-slot-info {
+  flex: 1;
+}
+
+.team-slot-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.team-slot-types {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.team-slot-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Slot Vacío */
+.team-slot-card.empty-slot {
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  background: rgba(22, 29, 40, 0.4);
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 140px;
+}
+
+.empty-slot-icon {
+  font-size: 2rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.empty-slot-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Ranura como item de lista semántica (cero span) */
+.team-slot-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.team-slot-img-wrap {
+  margin: 0;
+}
+
+.empty-slot-icon {
+  font-style: normal;
+}

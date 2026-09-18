@@ -1,0 +1,122 @@
+/* CAPTURE.CSS - Minijuego interactivo de Captura con Poké Ball */
+.capture-modal .modal-card {
+  max-width: 620px;
+  background: radial-gradient(circle at top, #1E2838 0%, #0F141C 100%);
+  border: 2px solid var(--color-primary);
+  text-align: center;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.capture-stage {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px 0;
+}
+
+.capture-target-pokemon {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.6));
+  transition: all 0.5s ease;
+}
+
+.capture-pokeball-graphic {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #E3350D 48%, #111 48%, #111 52%, #FFFFFF 52%);
+  border: 3px solid #111;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capture-pokeball-graphic::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: #FFF;
+  border: 3px solid #111;
+  border-radius: 50%;
+}
+
+/* Animación de oscilación (wobble) de la Poké Ball */
+@keyframes pokeballShake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-25deg); }
+  40% { transform: rotate(25deg); }
+  60% { transform: rotate(-15deg); }
+  80% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.capture-pokeball-graphic.shaking {
+  animation: pokeballShake 0.9s ease infinite;
+}
+
+.capture-status-text {
+  font-family: var(--font-family-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  min-height: 40px;
+}
+
+/* Botón temático de lanzamiento (modal Pokédex) */
+.capture-throw-btn {
+  gap: 12px;
+  animation: throwGlow 2.2s ease-in-out infinite;
+}
+
+.capture-throw-btn:hover:not(:disabled) {
+  animation-play-state: paused;
+}
+
+@keyframes throwGlow {
+  0%, 100% { box-shadow: 0 4px 14px rgba(220, 10, 45, 0.4); }
+  50% { box-shadow: 0 4px 26px rgba(220, 10, 45, 0.85); }
+}
+
+.capture-throw-ball {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border-width: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.capture-throw-ball::after {
+  width: 8px;
+  height: 8px;
+  border-width: 2px;
+}
+
+.capture-throw-label {
+  font-style: normal;
+  letter-spacing: 1px;
+}
+
+/* Adaptador modal (cero span, sin inline) */
+.capture-timing-wrap {
+  margin: 15px 0;
+}
+
+.capture-track {
+  height: 24px;
+}
+
+.capture-modal-actions {
+  margin: 0;
+}

@@ -1,0 +1,183 @@
+/* PROFILE.CSS - Carnet de Entrenador (Trainer Card), Estadísticas y Colección */
+
+.trainer-card-wrapper {
+  background: linear-gradient(135deg, #1C2331 0%, #101520 100%);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow-gold);
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.trainer-card-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 204, 1, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.trainer-card-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.trainer-avatar-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.12);
+  border: 3px solid var(--color-secondary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  background: var(--bg-surface-elevated);
+}
+
+.trainer-info-block {
+  flex: 1;
+}
+
+.trainer-rank-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 204, 1, 0.15);
+  color: var(--color-secondary);
+  border: 1px solid rgba(255, 204, 1, 0.3);
+  margin-bottom: 6px;
+}
+
+.trainer-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.trainer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.trainer-stat-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.trainer-stat-card.highlight {
+  border-color: #10B981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.trainer-stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.trainer-stat-val {
+  font-family: var(--font-family-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.legendary-boost-tag {
+  color: #10B981;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Medallas de gimnasio ganadas por victorias */
+.gym-badges-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge-token {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  filter: grayscale(1);
+  opacity: 0.4;
+  transition: all var(--transition-normal);
+}
+
+.badge-token.earned {
+  filter: grayscale(0);
+  opacity: 1;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 10px rgba(255, 204, 1, 0.4);
+}
+
+/* Barra de progreso de Encuentro Legendario */
+.boost-progress-wrap {
+  margin-top: 10px;
+}
+
+.boost-progress-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.boost-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10B981 0%, #34D399 50%, #FBBF24 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+/* Galería de capturados en el perfil */
+.profile-captured-section {
+  margin-top: 30px;
+}
+
+.profile-search-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.profile-empty-notice {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,348 @@
+/* LAYOUT.CSS - Estructura principal, Header, Navegación y Footer */
+.app-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(11, 14, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: var(--border-subtle);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-family-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--color-primary) 48%, #111 48%, #111 52%, #FFF 52%);
+  border: 2px solid #111;
+  position: relative;
+  box-shadow: var(--shadow-glow-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-icon::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #FFF;
+  border: 2px solid #111;
+  border-radius: 50%;
+}
+
+.brand-text {
+  color: var(--text-primary);
+  font-style: normal;
+}
+
+.brand-accent {
+  font-style: normal;
+  color: var(--color-primary);
+}
+
+/* Navegación principal */
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface-elevated);
+}
+
+.nav-link.active {
+  color: var(--color-secondary);
+  background: rgba(255, 204, 1, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 204, 1, 0.3);
+}
+
+.nav-badge {
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #FFF;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Grupo desplegable «Más» (Colección, Movimientos, Tipos) */
+.nav-more {
+  position: relative;
+}
+
+.nav-more-toggle {
+  cursor: pointer;
+}
+
+.nav-more-caret {
+  font-style: normal;
+  font-size: 0.7rem;
+  transition: transform var(--transition-fast);
+}
+
+#btn-nav-more[aria-expanded="true"] .nav-more-caret {
+  transform: rotate(180deg);
+}
+
+.nav-more-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: var(--bg-surface-elevated);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  z-index: 200;
+}
+
+#btn-nav-more[aria-expanded="true"] + .nav-more-menu {
+  display: block;
+}
+
+.nav-more-menu .nav-link {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.nav-tool-btn {
+  padding: 6px 10px;
+}
+
+/* Botón Hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-sm);
+  border: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.menu-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  font-style: normal;
+}
+
+/* Contenedor de Vistas SPA */
+.app-main {
+  min-height: calc(100vh - var(--header-height));
+  position: relative;
+}
+
+.app-section {
+  display: none;
+  opacity: 0;
+  padding: 40px 0 80px;
+  position: relative;
+}
+
+.app-section.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Footer */
+.app-footer {
+  border-top: var(--border-subtle);
+  background: var(--bg-surface);
+  padding: 30px 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-link:hover {
+  color: var(--color-secondary);
+}
+
+/* HERO / LANDING ELEGANTE CON ASH PROTAGONISTA (Sin video) */
+.hero-clean-landing {
+  min-height: calc(100vh - var(--header-height) - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 880px;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 10, 45, 0.18);
+  border: 1px solid var(--color-primary);
+  color: #FFF;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.title-accent {
+  font-style: normal;
+  color: var(--color-secondary);
+  text-shadow: 0 0 20px rgba(255, 204, 1, 0.4);
+}
+
+.hero-title .title-accent {
+  color: var(--color-secondary);
+  text-shadow: 0 0 20px rgba(255, 204, 1, 0.4);
+}
+
+.hero-pillar-words {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.pillar-tag {
+  font-family: var(--font-family-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pillar-tag:not(:last-child)::after {
+  content: "•";
+  color: var(--color-primary);
+}
+
+/* Tarjeta Protagónica de Ash en Hero */
+.ash-hero-card {
+  background: rgba(20, 26, 35, 0.94);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  max-width: 720px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow-gold);
+  text-align: left;
+}
+
+.ash-hero-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-primary);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.ash-hero-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-cta-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}

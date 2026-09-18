@@ -1,0 +1,107 @@
+/* MOVES.CSS - Estilos para la Biblioteca y Buscador de Movimientos Pokémon */
+.moves-explorer-container {
+  background: var(--bg-surface);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+}
+
+.moves-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-md);
+}
+
+.moves-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.move-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.move-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.move-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.move-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+.move-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  background: var(--bg-surface-elevated);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  margin: 10px 0;
+  font-size: 0.82rem;
+}
+
+.move-card-category-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.move-stat-item strong {
+  display: block;
+  font-family: var(--font-family-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.move-card-effect {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-top: 6px;
+}
+
+.category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.category-physical { background: rgba(239, 68, 68, 0.2); color: #F87171; border: 1px solid #EF4444; }
+.category-special { background: rgba(59, 130, 246, 0.2); color: #60A5FA; border: 1px solid #3B82F6; }
+.category-status { background: rgba(156, 163, 175, 0.2); color: #9CA3AF; border: 1px solid #6B7280; }
